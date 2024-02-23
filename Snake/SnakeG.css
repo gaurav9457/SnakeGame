@@ -1,0 +1,36 @@
+.body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#board {
+    background-color: rgb(207, 228, 176);
+    width: 600px;
+    height: 600px;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+}
+
+#headElement {
+    background-color: rgba(44, 77, 226, 0.733);
+    /* border-radius: 50px; */
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+
+}
+
+#snake {
+    /* background-color: purple; */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
+    background-blend-mode: multiply, multiply;
+
+}
+
+.food {
+    background-color: rgb(255, 60, 0);
+    border-radius: 50%;
+}
