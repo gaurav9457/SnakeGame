@@ -24,7 +24,8 @@ function startGame() {
     //part 1 update the snake 
 
     if (isCollide(snakeArr)) {
-        alert('Game over')
+       // alert('Game over')
+       displayModal();
         inputDir = { x: 0, y: 0 }
         snakeArr = [{ x: 1, y: 1 }]
         score = 0;
@@ -35,7 +36,7 @@ function startGame() {
     if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
         let a = 2;
-        let b = 16
+        let b = 16;
         food = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
         score++
 
@@ -65,6 +66,7 @@ function startGame() {
         if (index == 0) {
             //snakeElement.classList.add('head');
             snakeElement.id='headElement';
+            snakeElement.style.borderRadius = getHeadDirection(inputDir);
 			// snakeElement.class='head';
         }
         else {
@@ -88,8 +90,37 @@ function startGame() {
 
 }
 
+function getHeadDirection(inputDir) {
+    if (inputDir.x === 0 && inputDir.y === -1) {
+        return '50px 50px 0px 0px';
+    } else if (inputDir.x === 0 && inputDir.y === 1) {
+        return '0px 0px 50px 50px';
+    } else if (inputDir.x === -1 && inputDir.y === 0) {
+        return '50px 0px 0px 50px';
+    } else if (inputDir.x === 1 && inputDir.y === 0) {
+        return '0px 50px 50px 0px';
+    }
+}
+
+function displayModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+  
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
+
+
 function isCollide(snake) {
-    // crash with snake 
+    // crash with snake body
     for (let i = 1; i < snakeArr.length; i++) {
         if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
             return true
